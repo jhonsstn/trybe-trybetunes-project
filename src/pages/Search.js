@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Input from '../components/Input';
 import Loading from './Loading';
 
 class Search extends Component {
@@ -21,7 +22,9 @@ class Search extends Component {
     return isMounted ? (
       <Loading />
     ) : (
-      <div data-testid="page-search"> Search</div>
+      <div data-testid="page-search">
+        <Input />
+      </div>
     );
   }
 }
