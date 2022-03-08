@@ -38,6 +38,10 @@ class Login extends Component {
       this.setState({
         isDisabled: false,
       });
+    } else {
+      this.setState({
+        isDisabled: true,
+      });
     }
   };
 
