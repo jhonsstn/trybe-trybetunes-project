@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
 import Login from './pages/Login';
@@ -12,15 +13,50 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Route exact path="/" render={ (props) => <Login { ...props } /> } />
-
-        <Route path="/search" component={ Search } />
-
-        <Route path="/album/:id" component={ Album } />
-        <Route path="/favorites" component={ Favorites } />
-        <Route path="/profile/edit" component={ ProfileEdit } />
-        <Route path="/profile" component={ Profile } />
-        <Route path="*" component={ NotFound } />
+        <Switch>
+          <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+          <Route
+            path="/search"
+            render={ () => (
+              <Header>
+                <Search />
+              </Header>
+            ) }
+          />
+          <Route
+            path="/album/:id"
+            render={ () => (
+              <Header>
+                <Album />
+              </Header>
+            ) }
+          />
+          <Route
+            path="/favorites"
+            render={ () => (
+              <Header>
+                <Favorites />
+              </Header>
+            ) }
+          />
+          <Route
+            path="/profile/edit"
+            render={ () => (
+              <Header>
+                <ProfileEdit />
+              </Header>
+            ) }
+          />
+          <Route
+            path="/profile"
+            render={ () => (
+              <Header>
+                <Profile />
+              </Header>
+            ) }
+          />
+          <Route path="*" render={ () => <NotFound /> } />
+        </Switch>
       </Router>
     );
   }
